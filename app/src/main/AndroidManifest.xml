@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tpfinalppc">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_logo"
+        android:label="DeudoresAPP"
+        android:roundIcon="@mipmap/ic_launcher_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name="ar.edu.unnoba.tpfinalppc.LoginActivity"
+                  android:label="Deudores" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="ar.edu.unnoba.tpfinalppc.MainActivity"
+            android:label="Deudores"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name="ar.edu.unnoba.tpfinalppc.RegistroActivity"
+            android:label="Registrarse">
+        </activity>
+
+
+    </application>
+
+</manifest>
