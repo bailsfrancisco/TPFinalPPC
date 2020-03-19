@@ -5,9 +5,21 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_salir"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Salir" />
+            android:id="@+id/menuReconectar"
+            android:icon="@drawable/ic_reconectar"
+            android:title="@string/menu_reconectar" />
+        <item
+            android:id="@+id/menuDirecciones"
+            android:icon="@drawable/ic_direcciones_round"
+            android:title="@string/menu_direcciones" />
+        <item
+            android:id="@+id/menuMapa"
+            android:icon="@drawable/ic_mapa"
+            android:title="@string/menu_ver_mapa" />
+        <item
+            android:id="@+id/menuSalir"
+            android:icon="@drawable/ic_salir"
+            android:title="@string/menu_salir" />
     </group>
 
 </menu>

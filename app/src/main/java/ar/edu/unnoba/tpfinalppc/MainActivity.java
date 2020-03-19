@@ -8,38 +8,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tpfinalppc.R;
 
 import ar.edu.unnoba.tpfinalppc.Utils.Session;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Session session;
-
     private RequestQueue requestQueue;
-    //private TextView tvContent;
-    private TextView textView;
-    private ListView listView;
-    private String clientes [] = {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,85 +49,7 @@ public class MainActivity extends AppCompatActivity
         View header = ((NavigationView)findViewById(R.id.nav_view)).getHeaderView(0);
         ((TextView) header.findViewById(R.id.textViewUserLog)).setText(session.mostrarDatos());
 
-        //LLENAR LIST VIEW
-
-        textView = (TextView) findViewById(R.id.textView);
-        listView = (ListView) findViewById(R.id.listView);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_view_item_content_main, clientes);
-        listView.setAdapter(adapter);
-
-        //PARA CUANDO SE SELECCIONA UN CLIENTE
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                textView.setText("Se selecciono " + listView.getItemAtPosition(position));
-            }
-        });*/
-
-        //tvContent = (TextView) findViewById(R.id.textViewContent);
-        //Button btnGet = (Button) findViewById(R.id.buttonGet);
-
-        /*btnGet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                jsonParse();
-            }
-        });*/
         requestQueue = Volley.newRequestQueue(this);
-    }
-
-
-    //Trae los datos del WebService
-    private void jsonParse () {
-
-        String URL = "http://ppc.edit.com.ar:8080/resources/datos/clientes/-34.581727/-60.931513";
-
-
-        JsonArrayRequest objectRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.e("REST response", response.toString());
-                        try {
-
-                            String json = "";
-                            json = response.toString();
-                            JSONArray jsonArray = new JSONArray(json);
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                                String descripcion = jsonObject.getString("descripcion");
-                                Double latitud = jsonObject.getDouble("latitud");
-                                Double longitud = jsonObject.getDouble("longitud");
-                                String domicilio = jsonObject.getString("domicilio");
-                                String telefono = jsonObject.getString("telefono");
-                                int valor = jsonObject.getInt("valor");
-                                String detalle = jsonObject.getString("detalle");
-                                String tipo = jsonObject.getString("tipo");
-                                Double distancia = jsonObject.getDouble("distancia");
-
-                                //tvContent.append(descripcion + ", " + String.valueOf(latitud) + ", " + String.valueOf(longitud) + ", " + domicilio +"\n\n");
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("REST response", error.toString());
-                        error.printStackTrace();
-                    }
-                });
-
-        requestQueue.add(objectRequest);
-
     }
 
     private void logout(){
@@ -188,7 +94,7 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_salir) {
+        if (id == R.id.menuSalir) {
             logout();
         }
 

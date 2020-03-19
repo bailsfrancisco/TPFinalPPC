@@ -31,17 +31,19 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="false"
                 android:cropToPadding="false"
-                app:srcCompat="@mipmap/ic_launcher_logo" />
+                app:srcCompat="@mipmap/ic_logo"
+                android:contentDescription="@string/descripcion_imagen"/>
 
             <TextView
                 android:id="@+id/textViewBienvenida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gestion de deudores"
+                android:paddingTop="10dp"
+                android:text="@string/titulo"
                 android:textAllCaps="true"
                 android:textColor="#fff"
-                android:textStyle="italic"
-                android:textSize="20sp"/>
+                android:textStyle="bold"
+                android:textSize="15sp"/>
 
         </LinearLayout>
 
@@ -49,7 +51,7 @@
             android:id="@+id/textViewLoginEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ingrese su email"
+            android:text="@string/email"
             android:textColor="#fff"
             android:textStyle="bold"/>
 
@@ -66,7 +68,7 @@
             android:id="@+id/textViewLoginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ingrese su contraseña"
+            android:text="@string/contraseña"
             android:textColor="#fff"
             android:textStyle="bold"/>
 
@@ -83,31 +85,36 @@
             android:id="@+id/buttonLoginIngresar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ingresar"
+            android:background="@drawable/shape_button_contorno"
+            android:onClick="loguearme"
+            android:text="@string/ingresar"
             android:textAllCaps="false"
-            android:onClick="loguearme"/>
+            android:textColor="#fff"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewLoginRegistro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿No tiene cuenta?"
+                android:text="@string/no_tiene_cuenta"
                 android:textColor="#fff"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonLoginRegistrarse"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
-                android:text="Registrarse"
-                android:textAllCaps="false" />
+                android:background="@drawable/shape_button_contorno"
+                android:text="@string/registrarse"
+                android:textAllCaps="false"
+                android:textColor="#fff" />
         </LinearLayout>
 
     </LinearLayout>

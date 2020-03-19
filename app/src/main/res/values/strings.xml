@@ -1,9 +1,41 @@
 <resources>
-    <string name="app_name">TPFinalPPC</string>
-    <string name="title_activity_main">LoginActivity</string>
+    <string name="app_name">Deudores</string>
+    <!--string name="title_activity_main">LoginActivity</string-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">DeudoresAPP</string>
+    <!--string name="nav_header_title">Deudores</string-->
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Mas opciones</string>
+
+    <!--activity_login -->
+    <string name="descripcion_imagen">Logo</string>
+    <string name="titulo">Gestión de deudores</string>
+    <string name="email">Ingrese su e-mail</string>
+    <string name="contraseña">Ingrese su contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="no_tiene_cuenta">¿No tienes cuenta?</string>
+    <string name="registrarse">Registrate</string>
+    <string name="registrarme">Registrarme</string>
+    <string name="esta_registrado">¿Ya se encuentra registrado?</string>
+    <string name="crear_cuenta">Crear cuenta</string>
+
+    <string name="descripcion">Descripción</string>
+    <string name="tipo">Tipo</string>
+    <string name="distancia">Distancia</string>
+    <string name="valor_distancia">WebService distancia</string>
+    <string name="domicilio">Domicilio</string>
+    <string name="valor_domicilio">WebService domicilio</string>
+    <string name="latitud">Latitud</string>
+    <string name="valor_latitud">WebService latitud</string>
+    <string name="longitud">Longitud</string>
+    <string name="valor_longitud">WebService longitud</string>
+    <string name="telefono">Telefono</string>
+    <string name="valor_telefono">WebService telefono</string>
+    <string name="valor">Valor</string>
+    <string name="valor_deuda">WebService valor</string>
+
+    <string name="menu_reconectar">Recuperar conexión</string>
+    <string name="menu_direcciones">Obtener dirección</string>
+    <string name="menu_ver_mapa">Ver mapa</string>
+    <string name="menu_salir">Cerrar sesión</string>
 </resources>
