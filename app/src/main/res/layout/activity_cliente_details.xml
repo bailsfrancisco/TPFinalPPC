@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView"
+    android:id="@+id/scrollContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/scene_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#545454">
@@ -42,7 +42,7 @@
             android:layout_marginBottom="12dp"/>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/detailsConstraint"
+            android:id="@+id/detailConstraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/tipoWebService">
@@ -72,7 +72,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/etiquetaDistancia" />
 
             <TextView
-                android:id="@+id/distanciaWS"
+                android:id="@+id/distanciaWebService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -86,7 +86,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/domicilioWS"
+                android:id="@+id/domicilioWebService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -97,7 +97,7 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/etiquetaDomicilio"
-                app:layout_constraintTop_toBottomOf="@+id/distanciaWS" />
+                app:layout_constraintTop_toBottomOf="@+id/distanciaWebService" />
 
             <TextView
                 android:id="@+id/etiquetaTelefono"
@@ -112,7 +112,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/etiquetaDomicilio" />
 
             <TextView
-                android:id="@+id/telefonoWS"
+                android:id="@+id/telefonoWebService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -125,7 +125,7 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/etiquetaTelefono"
-                app:layout_constraintTop_toBottomOf="@+id/domicilioWS" />
+                app:layout_constraintTop_toBottomOf="@+id/domicilioWebService" />
 
             <TextView
                 android:id="@+id/etiquetaValor"
@@ -142,7 +142,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/etiquetaTelefono" />
 
             <TextView
-                android:id="@+id/valorWS"
+                android:id="@+id/valorWebService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -155,7 +155,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/etiquetaValor"
-                app:layout_constraintTop_toBottomOf="@+id/telefonoWS" />
+                app:layout_constraintTop_toBottomOf="@+id/telefonoWebService" />
 
         </android.support.constraint.ConstraintLayout>
 

@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.tpfinalppc.R;
-
 import ar.edu.unnoba.tpfinalppc.Utils.DBhelper;
 
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {

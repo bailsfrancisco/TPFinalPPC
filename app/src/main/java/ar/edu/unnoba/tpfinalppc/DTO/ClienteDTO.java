@@ -106,7 +106,17 @@ public class ClienteDTO {
     }
 
     @Override
-    public String toString(){
-        return descripcion;
+    public String toString() {
+        return "ClienteDTO{" +
+                "distancia=" + distancia +
+                ", tipo='" + tipo + '\'' +
+                ", detalle='" + detalle + '\'' +
+                ", valor=" + valor +
+                ", telefono='" + telefono + '\'' +
+                ", domicilio='" + domicilio + '\'' +
+                ", longitud=" + longitud +
+                ", latitud=" + latitud +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
 }
