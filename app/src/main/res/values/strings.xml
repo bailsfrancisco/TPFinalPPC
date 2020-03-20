@@ -38,4 +38,7 @@
     <string name="menu_direcciones">Obtener dirección</string>
     <string name="menu_ver_mapa">Ver mapa</string>
     <string name="menu_salir">Cerrar sesión</string>
+
+    <string name="about">Info.</string>
+    <string name="manifestAbout">Acerca de la aplicación</string>
 </resources>

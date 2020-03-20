@@ -81,7 +81,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.about) {
+            Intent i = new Intent(this, InfoActivity.class);
+            startActivity(i);
             return true;
         }
 
@@ -93,6 +95,18 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+
+        if (id == R.id.menuReconectar) {
+
+        }
+
+        if (id == R.id.menuDirecciones) {
+
+        }
+
+        if (id == R.id.menuMapa) {
+
+        }
 
         if (id == R.id.menuSalir) {
             logout();
