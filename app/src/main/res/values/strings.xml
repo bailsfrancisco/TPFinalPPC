@@ -44,4 +44,5 @@
     <string name="about">Info.</string>
     <string name="manifestAbout">Acerca de la aplicación</string>
     <string name="manifestClientDetail">Detalles</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

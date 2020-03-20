@@ -37,14 +37,13 @@ public class MainActivity extends AppCompatActivity
 
     private Session session;
     private RequestQueue requestQueue;
-    private static final String URL = "http://ppc.edit.com.ar:8080/resources/datos/clientes/-34.581727/-60.931513";
+    private static final String URL = "http://ppc.edit.com.ar:8080/resources/datos/deudas/-34.581727/-60.931513";
 
     Gson gson;
-    List<Cliente> clientes; //DATASET FOR RECYCLER
-    RecyclerView listado_clientesRecycler; //RECYCLER
+    List<Cliente> clientes;
+    RecyclerView listado_clientesRecycler;
     ClienteAdapter clienteAdapter;
     ProgressBar progressBar;
-    //RecyclerView.LayoutManager layoutManager;
 
     boolean local = false;
     public static final String TAG = MainActivity.class.getSimpleName();
@@ -127,14 +126,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-
-        if (id == R.id.menuReconectar) {
-            recreate();
-        }
-
-        if (id == R.id.menuDirecciones) {
-
-        }
 
         if (id == R.id.menuMapa) {
 

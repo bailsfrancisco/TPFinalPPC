@@ -4,14 +4,6 @@
     tools:showIn="navigation_view">
 
         <item
-            android:id="@+id/menuReconectar"
-            android:icon="@drawable/ic_reconectar"
-            android:title="@string/menu_reconectar" />
-        <item
-            android:id="@+id/menuDirecciones"
-            android:icon="@drawable/ic_direcciones_round"
-            android:title="@string/menu_direcciones" />
-        <item
             android:id="@+id/menuMapa"
             android:icon="@drawable/ic_mapa"
             android:title="@string/menu_ver_mapa" />

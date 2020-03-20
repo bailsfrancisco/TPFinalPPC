@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="55dp"
         android:orientation="vertical"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        android:backgroundTint="@color/colorPrimary"/>
 
 </RelativeLayout>
