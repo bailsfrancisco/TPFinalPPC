@@ -14,12 +14,12 @@ public class DBhelper extends SQLiteOpenHelper {
     public static final int DB_VERSION = 1;
 
     public static final String USER_TABLE = "users";
-    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_ID_USUARIO = "_id";
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_PASS = "password";
 
     public static final String CREATE_TABLE_USERS = "CREATE TABLE " + USER_TABLE + "("
-            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_ID_USUARIO+ " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_EMAIL + " TEXT,"
             + COLUMN_PASS + " TEXT);";
 
@@ -55,7 +55,7 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     public boolean getUser(String email, String pass){
-        //HashMap<String, String> user = new HashMap<String, String>();
+
         String selectQuery = "select * from  " + USER_TABLE + " where " +
                 COLUMN_EMAIL + " = " + "'"+email+"'" + " and " + COLUMN_PASS + " = " + "'"+pass+"'";
 

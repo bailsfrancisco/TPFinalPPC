@@ -17,7 +17,7 @@ import ar.edu.unnoba.tpfinalppc.Model.Cliente;
 
 public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteViewHolder> {
 
-    private List<Cliente> clientes;
+     List<Cliente> clientes;
 
     public ClienteAdapter(List<Cliente> clientes){
         this.clientes = clientes;
@@ -27,17 +27,18 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteV
 
     public class ClienteViewHolder extends RecyclerView.ViewHolder {
 
-        TextView descripcion, tipo;
+        TextView descripcion, detalle;
         CardView cardView;
         ImageView img_view;
         Cliente cliente_mostrar;
 
         public ClienteViewHolder(View view){
             super(view);
+
             cardView = view.findViewById(R.id.card_view);
             img_view = view.findViewById(R.id.imageAnonima);
             descripcion = view.findViewById(R.id.descripcionWebService);
-            tipo = view.findViewById(R.id.tipoWebService);
+            detalle = view.findViewById(R.id.detalleWebService);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -50,14 +51,14 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteV
             });
         }
 
-        public void setClienteDTO(Cliente cliente){
+        public void setCliente(Cliente cliente){
             this.cliente_mostrar = cliente;
         }
 
         public void updateUI(){
             descripcion.setText(cliente_mostrar.getDescripcion());
-            tipo.setText(cliente_mostrar.getTipo());
-            img_view.setImageResource(cliente_mostrar.getReferenceImage());
+            detalle.setText(cliente_mostrar.getDetalle());
+            img_view.setImageResource(cliente_mostrar.getImage());
         }
 
     }
@@ -65,13 +66,14 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteV
     @NonNull
     @Override
     public ClienteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_clientes, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.activity_clientes, parent, false);
         return new ClienteViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ClienteViewHolder holder, int position) {
-        holder.setClienteDTO(clientes.get(position));
+        holder.setCliente(clientes.get(position));
         holder.updateUI();
     }
 

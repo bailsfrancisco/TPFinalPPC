@@ -20,7 +20,7 @@
     <string name="crear_cuenta">Crear cuenta</string>
 
     <string name="descripcion">Descripción</string>
-    <string name="tipo">Tipo</string>
+    <string name="detalle">Detalle</string>
     <string name="distancia">Distancia</string>
     <string name="valor_distancia">WebService distancia</string>
     <string name="domicilio">Domicilio</string>
@@ -33,6 +33,8 @@
     <string name="valor_telefono">WebService telefono</string>
     <string name="valor">Valor</string>
     <string name="valor_deuda">WebService valor</string>
+    <string name="tipo">Tipo</string>
+    <string name="valor_tipo">WebService tipo</string>
 
     <string name="menu_reconectar">Recuperar conexión</string>
     <string name="menu_direcciones">Obtener dirección</string>
@@ -41,4 +43,5 @@
 
     <string name="about">Info.</string>
     <string name="manifestAbout">Acerca de la aplicación</string>
+    <string name="manifestClientDetail">Detalles</string>
 </resources>

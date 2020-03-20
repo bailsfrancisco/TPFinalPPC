@@ -2,38 +2,32 @@ package ar.edu.unnoba.tpfinalppc.Model;
 
 public class Cliente {
 
-    int id;
     private String descripcion;
-    private String tipo;
-    private String detalle;
-    private Double distancia;
-    private String domicilio;
     private Double latitud;
     private Double longitud;
+    private String domicilio;
     private Long telefono;
     private Double valor;
-    private int referenceImage;
+    private String detalle;
+    private String tipo;
+    private Double distancia;
+
+    private int image;
 
     public Cliente() {
     }
 
-    public Cliente(int id, String descripcion, String tipo, String detalle, Double distancia, String domicilio, Long telefono, Double valor) {
-        this.id = id;
+    public Cliente(String descripcion, Double latitud, Double longitud, String domicilio, Long telefono, Double valor, String detalle, String tipo, Double distancia, int image) {
         this.descripcion = descripcion;
-        this.tipo = tipo;
-        this.detalle = detalle;
-        this.distancia = distancia;
+        this.latitud = latitud;
+        this.longitud = longitud;
         this.domicilio = domicilio;
         this.telefono = telefono;
         this.valor = valor;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.detalle = detalle;
+        this.tipo = tipo;
+        this.distancia = distancia;
+        this.image = image;
     }
 
     public String getDescripcion() {
@@ -42,38 +36,6 @@ public class Cliente {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getDetalle() {
-        return detalle;
-    }
-
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
-    }
-
-    public Double getDistancia() {
-        return distancia;
-    }
-
-    public void setDistancia(Double distancia) {
-        this.distancia = distancia;
-    }
-
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
     }
 
     public Double getLatitud() {
@@ -92,6 +54,14 @@ public class Cliente {
         this.longitud = longitud;
     }
 
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
     public Long getTelefono() {
         return telefono;
     }
@@ -108,26 +78,51 @@ public class Cliente {
         this.valor = valor;
     }
 
-    public int getReferenceImage() {
-        return referenceImage;
+    public String getDetalle() {
+        return detalle;
     }
 
-    public void setReferenceImage(int referenceImage) {
-        this.referenceImage = referenceImage;
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Double getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(Double distancia) {
+        this.distancia = distancia;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     @Override
     public String toString() {
         return "Cliente{" +
                 "descripcion='" + descripcion + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", detalle='" + detalle + '\'' +
-                ", distancia=" + distancia +
-                ", domicilio='" + domicilio + '\'' +
                 ", latitud=" + latitud +
                 ", longitud=" + longitud +
+                ", domicilio='" + domicilio + '\'' +
                 ", telefono=" + telefono +
                 ", valor=" + valor +
+                ", detalle='" + detalle + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", distancia=" + distancia +
+                ", image=" + image +
                 '}';
     }
 }

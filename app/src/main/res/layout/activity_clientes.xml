@@ -50,10 +50,10 @@
                     android:layout_below="@+id/imageAnonima"/>
 
                 <TextView
-                    android:id="@+id/tipoWebService"
+                    android:id="@+id/detalleWebService"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/tipo"
+                    android:text="@string/detalle"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"

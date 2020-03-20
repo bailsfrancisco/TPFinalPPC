@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
         <item
             android:id="@+id/menuReconectar"
             android:icon="@drawable/ic_reconectar"
@@ -20,6 +19,5 @@
             android:id="@+id/menuSalir"
             android:icon="@drawable/ic_salir"
             android:title="@string/menu_salir" />
-    </group>
 
 </menu>

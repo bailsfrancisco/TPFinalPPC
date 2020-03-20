@@ -13,7 +13,7 @@ import ar.edu.unnoba.tpfinalppc.Model.Cliente;
 
 public class ClienteDetail extends AppCompatActivity {
 
-    TextView descripcion,tipo,distancia,domicilio,telefono,valor;
+    TextView descripcion,detalle,distancia,domicilio, latitud, longitud,telefono,valor, tipo;
     ImageView img_anonima;
     Cliente cliente;
 
@@ -23,43 +23,44 @@ public class ClienteDetail extends AppCompatActivity {
         setContentView(R.layout.activity_cliente_details);
 
         descripcion = findViewById(R.id.descripcionWebService);
-        tipo = findViewById(R.id.tipoWebService);
+        detalle = findViewById(R.id.detalleWebService);
         distancia = findViewById(R.id.distanciaWebService);
         domicilio = findViewById(R.id.domicilioWebService);
+        latitud = findViewById(R.id.latitudWebService);
+        longitud = findViewById(R.id.longitudWebService);
         telefono = findViewById(R.id.telefonoWebService);
         valor = findViewById(R.id.valorWebService);
+        tipo = findViewById(R.id.tipoWebService);
         img_anonima = findViewById(R.id.imageAnonima);
+
         Gson gson = new Gson();
         cliente = gson.fromJson(getIntent().getStringExtra("myjson"), Cliente.class);
 
-        img_anonima.setImageResource(cliente.getReferenceImage());
+        img_anonima.setImageResource(cliente.getImage());
         descripcion.setText(cliente.getDescripcion());
-        tipo.setText(cliente.getTipo());
+        detalle.setText(cliente.getDetalle());
         if(cliente.getDistancia()>1000){
-            distancia.setText(String.format("%.3f",cliente.getDistancia()/1000)+" Km");
+            distancia.setText(String.format("%.3f",cliente.getDistancia()/1000)+" KM");
         }else {
-            distancia.setText(String.format("%.3f",cliente.getDistancia()) + " metros");
+            distancia.setText(String.format("%.3f",cliente.getDistancia()) + "M");
         }
         domicilio.setText(cliente.getDomicilio());
-
+        latitud.setText(String.valueOf(cliente.getLatitud()));
+        longitud.setText(String.valueOf(cliente.getLongitud()));
         telefono.setText("+"+cliente.getTelefono());
         valor.setText(String.valueOf(cliente.getValor()));
+        tipo.setText(cliente.getTipo());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        getMenuInflater().inflate(R.menu.activity_cliente_details_menu, menu);
         return true;
     }
 
-
-    //VER METODO
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menuReconectar:
-                recreate();
-                return true;
             case R.id.menuDirecciones:
                 /*
                 String uri = "http://maps.google.com/maps?daddr=" + clienteDTO.getLatitud() + "," + obra.getLongitud() + " (" + obra.getDescripcion() + ")";
