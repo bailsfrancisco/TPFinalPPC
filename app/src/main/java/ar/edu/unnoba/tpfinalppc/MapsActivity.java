@@ -26,9 +26,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Double long_c3;
     String descripcion_c3;
 
-    Double lat;
-    Double longi;
-    String desc;
+    Double lat_detail;
+    Double long_detail;
+    String desc_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         Bundle extras = getIntent().getExtras();
+
+        //todos los detalles
         lat_c1 = extras.getDouble("latitud_c1");
         long_c1 = extras.getDouble("longitud_c1");
         descripcion_c1 = extras.getString("desc_c1");
@@ -50,35 +52,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long_c3 = extras.getDouble("longitud_c3");
         descripcion_c3 = extras.getString("desc_c3");
 
-        lat = extras.getDouble("lat");
-        longi = extras.getDouble("long");
-        desc = extras.getString("desc");
+        //Detalle del cliente seleccionado
+        lat_detail = extras.getDouble("lat");
+        long_detail = extras.getDouble("long");
+        desc_detail = extras.getString("desc");
 
-    }
-
-    //Para visualizar el mapa por cliente
-    public void clienteDetailMap(){
-        LatLng c1 = new LatLng(lat, longi);
-        mMap.addMarker(new MarkerOptions().position(c1).title(desc)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(c1, 13));
-    }
-
-    //Para ver mapa con todos los clientes
-    public void clientesMap(){
-        //Republica 221 Junin
-        LatLng cliente1 = new LatLng(lat_c1, long_c1);
-        mMap.addMarker(new MarkerOptions().position(cliente1).title(descripcion_c1)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
-
-        //Rivadavia 1470 Junin
-        LatLng cliente2 = new LatLng(lat_c2, long_c2);
-        mMap.addMarker(new MarkerOptions().position(cliente2).title(descripcion_c2)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
-
-        //Parque Industrial Junin
-        LatLng cliente3 = new LatLng(lat_c3, long_c3);
-        mMap.addMarker(new MarkerOptions().position(cliente3).title(descripcion_c3)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
-
-        //que se mueva por defecto a tal direccion y agregue zoom
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cliente1, 13));
     }
 
     /**
@@ -94,8 +72,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        clientesMap();
-        clienteDetailMap();
+        if(lat_c1 != 0.0 && lat_c2 != 0.0 && lat_c3 != 0.0){
+            //Republica 221 Junin
+            LatLng cliente1 = new LatLng(lat_c1, long_c1);
+            mMap.addMarker(new MarkerOptions().position(cliente1).title(descripcion_c1)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
 
+            //Rivadavia 1470 Junin
+            LatLng cliente2 = new LatLng(lat_c2, long_c2);
+            mMap.addMarker(new MarkerOptions().position(cliente2).title(descripcion_c2)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
+
+            //Parque Industrial Junin
+            LatLng cliente3 = new LatLng(lat_c3, long_c3);
+            mMap.addMarker(new MarkerOptions().position(cliente3).title(descripcion_c3)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
+
+            //que se mueva por defecto a tal direccion y agregue zoom
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cliente1, 13));
+        }else{
+            LatLng c = new LatLng(lat_detail, long_detail);
+            mMap.addMarker(new MarkerOptions().position(c).title(desc_detail)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(c, 13));
+        }
     }
 }
