@@ -4,20 +4,34 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
 import ar.edu.unnoba.tpfinalppc.Model.Cliente;
 
-public class ClienteDetail extends AppCompatActivity {
+public class ClienteDetail extends AppCompatActivity  implements OnMapReadyCallback {
 
     TextView descripcion,detalle,distancia,domicilio, latitud, longitud,telefono,valor, tipo;
     ImageView img_anonima;
     Cliente cliente;
+
+    private GoogleMap googleMap;
+    private MapView mMapView;
+
+    private static final String TAG = ClienteDetail.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +67,10 @@ public class ClienteDetail extends AppCompatActivity {
         valor.setText(String.valueOf(cliente.getValor()));
         tipo.setText(cliente.getTipo());
 
+        mMapView = findViewById(R.id.mapView);
+        mMapView.onCreate(savedInstanceState);
+        mMapView.getMapAsync(this);
+
     }
 
     @Override
@@ -84,4 +102,53 @@ public class ClienteDetail extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng c = new LatLng(cliente.getLatitud(), cliente.getLongitud());
+        googleMap.addMarker(new MarkerOptions().position(c).title(cliente.getDescripcion())).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(c, 15));
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mMapView.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mMapView.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMapView.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        mMapView.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
+    }
 }
