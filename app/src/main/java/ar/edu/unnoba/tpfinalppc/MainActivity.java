@@ -2,13 +2,13 @@ package ar.edu.unnoba.tpfinalppc;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -128,7 +128,22 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.menuMapa) {
+            //Levanta el mapa de google
+            //Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+            //startActivity(intent);
 
+            //DEBERIA PASAR LOS DATOS TRAIDOS DEL WS A TRAVES DE UN BUNDLE AL MAPA
+            Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+            intent.putExtra("latitud_c1",clientes.get(0).getLatitud());
+            intent.putExtra("longitud_c1",clientes.get(0).getLongitud());
+            intent.putExtra("desc_c1", clientes.get(0).getDescripcion());
+            intent.putExtra("latitud_c2",clientes.get(1).getLatitud());
+            intent.putExtra("longitud_c2",clientes.get(1).getLongitud());
+            intent.putExtra("desc_c2", clientes.get(1).getDescripcion());
+            intent.putExtra("latitud_c3",clientes.get(2).getLatitud());
+            intent.putExtra("longitud_c3",clientes.get(2).getLongitud());
+            intent.putExtra("desc_c3", clientes.get(2).getDescripcion());
+            startActivity(intent);
         }
 
         if (id == R.id.menuSalir) {

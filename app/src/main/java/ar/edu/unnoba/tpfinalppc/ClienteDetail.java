@@ -1,7 +1,8 @@
 package ar.edu.unnoba.tpfinalppc;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -61,6 +62,7 @@ public class ClienteDetail extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            //Obtener direcciones
             case R.id.menuDirecciones:
                 /*
                 String uri = "http://maps.google.com/maps?daddr=" + clienteDTO.getLatitud() + "," + obra.getLongitud() + " (" + obra.getDescripcion() + ")";
@@ -68,12 +70,13 @@ public class ClienteDetail extends AppCompatActivity {
                 intent.setPackage("com.google.android.apps.maps");
                 startActivity(intent);*/
                 return true;
+                //Ver mapa una vez seleccionado el cliente
             case R.id.menuMapa:
-                /*Intent i = new Intent(this,MapsActivity.class);
-                i.putExtra("latitud",clienteDTO.getLatitud());
-                i.putExtra("longitud",clienteDTO.getLongitud());
-                i.putExtra("descripcion",clienteDTO.getDescripcion());
-                startActivity(i);*/
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                intent.putExtra("lat", cliente.getLatitud());
+                intent.putExtra("long", cliente.getLongitud());
+                intent.putExtra("desc", cliente.getDescripcion());
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
