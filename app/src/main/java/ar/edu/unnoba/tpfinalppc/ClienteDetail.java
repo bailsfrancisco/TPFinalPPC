@@ -1,6 +1,7 @@
 package ar.edu.unnoba.tpfinalppc;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
@@ -27,8 +28,8 @@ public class ClienteDetail extends AppCompatActivity {
         detalle = findViewById(R.id.detalleWebService);
         distancia = findViewById(R.id.distanciaWebService);
         domicilio = findViewById(R.id.domicilioWebService);
-        latitud = findViewById(R.id.latitudWebService);
-        longitud = findViewById(R.id.longitudWebService);
+        //latitud = findViewById(R.id.latitudWebService);
+        //longitud = findViewById(R.id.longitudWebService);
         telefono = findViewById(R.id.telefonoWebService);
         valor = findViewById(R.id.valorWebService);
         tipo = findViewById(R.id.tipoWebService);
@@ -41,16 +42,17 @@ public class ClienteDetail extends AppCompatActivity {
         descripcion.setText(cliente.getDescripcion());
         detalle.setText(cliente.getDetalle());
         if(cliente.getDistancia()>1000){
-            distancia.setText(String.format("%.3f",cliente.getDistancia()/1000)+" KM");
+            distancia.setText(String.format("%.1f",cliente.getDistancia()/1000)+" Km");
         }else {
-            distancia.setText(String.format("%.3f",cliente.getDistancia()) + "M");
+            distancia.setText(String.format("%.1f",cliente.getDistancia()) + " m");
         }
         domicilio.setText(cliente.getDomicilio());
-        latitud.setText(String.valueOf(cliente.getLatitud()));
-        longitud.setText(String.valueOf(cliente.getLongitud()));
+        //latitud.setText(String.valueOf(cliente.getLatitud()));
+        //longitud.setText(String.valueOf(cliente.getLongitud()));
         telefono.setText("+"+cliente.getTelefono());
         valor.setText(String.valueOf(cliente.getValor()));
         tipo.setText(cliente.getTipo());
+
     }
 
     @Override
@@ -62,13 +64,13 @@ public class ClienteDetail extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            //Obtener direcciones
             case R.id.menuDirecciones:
-                /*
-                String uri = "http://maps.google.com/maps?daddr=" + clienteDTO.getLatitud() + "," + obra.getLongitud() + " (" + obra.getDescripcion() + ")";
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                intent.setPackage("com.google.android.apps.maps");
-                startActivity(intent);*/
+                //Obtener direcciones
+                //ANTES NECESITO CONOCER MI UBICACION
+                /*String uri = "http://maps.google.com/maps?daddr=" + cliente.getLatitud() + "," + cliente.getLongitud() + " (" + cliente.getDescripcion() + ")";
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                i.setPackage("com.google.android.apps.maps");
+                startActivity(i);*/
                 return true;
                 //Ver mapa una vez seleccionado el cliente
             case R.id.menuMapa:

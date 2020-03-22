@@ -128,11 +128,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.menuMapa) {
-            //Levanta el mapa de google
-            //Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-            //startActivity(intent);
-
-            //DEBERIA PASAR LOS DATOS TRAIDOS DEL WS A TRAVES DE UN BUNDLE AL MAPA
+            //DATOS TRAIDOS DEL WS A TRAVES DE UN BUNDLE AL MAPA
             Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
             intent.putExtra("latitud_c1",clientes.get(0).getLatitud());
             intent.putExtra("longitud_c1",clientes.get(0).getLongitud());

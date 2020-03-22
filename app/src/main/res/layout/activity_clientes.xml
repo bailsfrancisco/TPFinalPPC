@@ -24,14 +24,13 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="#545454"
             cardView:cardCornerRadius="2dp"
             cardView:cardElevation="2dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#545454">
+                android:background="#FFFFFF">
 
                 <ImageView
                     android:id="@+id/imageAnonima"
@@ -49,7 +48,7 @@
                     android:layout_below="@+id/imageAnonima"
                     android:text="@string/descripcion"
                     android:textAlignment="center"
-                    android:textColor="#fff"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20sp" />
 
                 <TextView
