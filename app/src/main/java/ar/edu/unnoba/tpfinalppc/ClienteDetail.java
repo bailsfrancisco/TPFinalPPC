@@ -66,11 +66,10 @@ public class ClienteDetail extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menuDirecciones:
                 //Obtener direcciones
-                //ANTES NECESITO CONOCER MI UBICACION
-                /*String uri = "http://maps.google.com/maps?daddr=" + cliente.getLatitud() + "," + cliente.getLongitud() + " (" + cliente.getDescripcion() + ")";
+                String uri = "http://maps.google.com/maps?daddr=" + cliente.getLatitud() + "," + cliente.getLongitud() + " (" + cliente.getDescripcion() + ")";
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 i.setPackage("com.google.android.apps.maps");
-                startActivity(i);*/
+                startActivity(i);
                 return true;
                 //Ver mapa una vez seleccionado el cliente
             case R.id.menuMapa:
