@@ -1,6 +1,6 @@
 package ar.edu.unnoba.tpfinalppc.Model;
 
-public class Cliente {
+public class Cliente implements  Comparable<Cliente>{
 
     private String descripcion;
     private Double latitud;
@@ -10,14 +10,14 @@ public class Cliente {
     private Double valor;
     private String detalle;
     private String tipo;
-    private Double distancia;
+    private float distancia;
 
     private int image;
 
     public Cliente() {
     }
 
-    public Cliente(String descripcion, Double latitud, Double longitud, String domicilio, Long telefono, Double valor, String detalle, String tipo, Double distancia, int image) {
+    public Cliente(String descripcion, Double latitud, Double longitud, String domicilio, Long telefono, Double valor, String detalle, String tipo, float distancia, int image) {
         this.descripcion = descripcion;
         this.latitud = latitud;
         this.longitud = longitud;
@@ -94,11 +94,11 @@ public class Cliente {
         this.tipo = tipo;
     }
 
-    public Double getDistancia() {
+    public float getDistancia() {
         return distancia;
     }
 
-    public void setDistancia(Double distancia) {
+    public void setDistancia(float distancia) {
         this.distancia = distancia;
     }
 
@@ -124,5 +124,18 @@ public class Cliente {
                 ", distancia=" + distancia +
                 ", image=" + image +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Cliente o) {
+        if (getDistancia() > o.getDistancia()) {
+            return 1;
+        }
+        else if (getDistancia() <  o.getDistancia()) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
     }
 }

@@ -77,17 +77,9 @@ public class ClienteDetail extends AppCompatActivity  implements OnMapReadyCallb
 
         location_cliente = new LatLng(cliente.getLatitud(), cliente.getLongitud());
 
-
         img_anonima.setImageResource(cliente.getImage());
         descripcion.setText(cliente.getDescripcion());
         detalle.setText(cliente.getDetalle());
-
-        /*
-        if(cliente.getDistancia()>1000){
-            distancia.setText(String.format("%.1f",cliente.getDistancia()/1000)+" Km");
-        }else {
-            distancia.setText(String.format("%.1f",cliente.getDistancia()) + " m");
-        }*/
 
         domicilio.setText(cliente.getDomicilio());
         telefono.setText("+"+cliente.getTelefono());
@@ -234,21 +226,18 @@ public class ClienteDetail extends AppCompatActivity  implements OnMapReadyCallb
     public void setLocation(Location loc) {
         LatLng location_usuario = null;
         float dist;
-        //Obtener la direccion de la calle a partir de la latitud y la longitud
         if (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0) {
             try {
                 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
                 List<Address> list = geocoder.getFromLocation(
                         loc.getLatitude(), loc.getLongitude(), 1);
                 if (!list.isEmpty()) {
-                    //Address DirCalle = list.get(0);
                     Double lat = loc.getLatitude();
                     Double lon = loc.getLongitude();
 
                     location_usuario = new LatLng(lat, lon);
-                    //Devuelve la distancia entre dos puntos
-                    dist = getDistance(location_usuario, location_cliente);
 
+                    dist = getDistance(location_usuario, location_cliente);
                     if(dist>1000){
                         distancia.setText(String.format("%.1f",dist/1000)+" Km");
                     }else {
@@ -277,10 +266,8 @@ public class ClienteDetail extends AppCompatActivity  implements OnMapReadyCallb
         @Override
         public void onLocationChanged(Location loc) {
             // Este metodo se ejecuta cada vez que el GPS recibe nuevas coordenadas debido a la deteccion de un cambio de ubicacion del dispositivo
-
             loc.getLatitude();
             loc.getLongitude();
-
             this.clienteDetail.setLocation(loc);
         }
 
