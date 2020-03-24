@@ -21,6 +21,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -43,6 +44,7 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -95,6 +97,8 @@ public class MainActivity extends AppCompatActivity
         ((TextView) header.findViewById(R.id.textViewUserLog)).setText(session.mostrarDatos());
 
         progressBar = findViewById(R.id.loading);
+
+        clientes = new ArrayList<Cliente>();
 
         listado_clientesRecycler = findViewById(R.id.recycler); //RECYCLER
         requestQueue = Volley.newRequestQueue(this);
@@ -257,6 +261,8 @@ public class MainActivity extends AppCompatActivity
             float y = aux.get(1).getDistancia();
             float z = aux.get(2).getDistancia();
 
+
+            listado_clientesRecycler.setLayoutManager(new LinearLayoutManager(this));
 
             clienteAdapter = new ClienteAdapter(aux);
 
