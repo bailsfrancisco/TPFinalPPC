@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -70,7 +71,6 @@ public class ClienteDetail extends AppCompatActivity  implements OnMapReadyCallb
         mMapView = findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
-
     }
 
     @Override
@@ -91,15 +91,19 @@ public class ClienteDetail extends AppCompatActivity  implements OnMapReadyCallb
                 return true;
                 //Ver mapa una vez seleccionado el cliente
             case R.id.menuMapa:
-                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-                intent.putExtra("lat", cliente.getLatitud());
-                intent.putExtra("long", cliente.getLongitud());
-                intent.putExtra("desc", cliente.getDescripcion());
-                startActivity(intent);
+                viewMapOnClick();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void viewMapOnClick(){
+        Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+        intent.putExtra("lat", cliente.getLatitud());
+        intent.putExtra("long", cliente.getLongitud());
+        intent.putExtra("desc", cliente.getDescripcion());
+        startActivity(intent);
     }
 
     @Override
@@ -107,7 +111,15 @@ public class ClienteDetail extends AppCompatActivity  implements OnMapReadyCallb
         LatLng c = new LatLng(cliente.getLatitud(), cliente.getLongitud());
         googleMap.addMarker(new MarkerOptions().position(c).title(cliente.getDescripcion())).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker_map));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(c, 15));
-
+        //bloquear movimiento de map view
+        googleMap.getUiSettings().setAllGesturesEnabled(false);
+        //abrir mapa al tocar el map view
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                viewMapOnClick();
+            }
+        });
     }
 
     @Override
