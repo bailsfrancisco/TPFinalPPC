@@ -4,6 +4,11 @@
 
 
     <item
+        android:id="@+id/reconectar"
+        android:orderInCategory="100"
+        android:title="@string/menu_reconectar"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/about"
         android:orderInCategory="100"
         android:title="@string/about"

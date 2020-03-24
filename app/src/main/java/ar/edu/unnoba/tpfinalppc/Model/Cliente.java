@@ -127,15 +127,17 @@ public class Cliente implements  Comparable<Cliente>{
     }
 
     @Override
-    public int compareTo(Cliente o) {
-        if (getDistancia() > o.getDistancia()) {
+    public int compareTo(Cliente f) {
+
+        if (getDistancia() > f.getDistancia()) {
             return 1;
         }
-        else if (getDistancia() <  o.getDistancia()) {
+        else if (getDistancia() <  f.getDistancia()) {
             return -1;
         }
         else {
             return 0;
         }
+
     }
 }

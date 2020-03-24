@@ -156,6 +156,10 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        if (id == R.id.reconectar){
+            recreate();
+        }
+
         if (id == R.id.about) {
             Intent i = new Intent(this, InfoActivity.class);
             startActivity(i);
@@ -233,13 +237,31 @@ public class MainActivity extends AppCompatActivity
             clientes.get(1).setImage(R.drawable.cliente_garbarino);
             clientes.get(2).setImage(R.drawable.cliente_sistema_riego);
 
+
+
+            Cliente cl = clientes.get(0);
+            Cliente cl1 = clientes.get(1);
+            Cliente cl2 = clientes.get(2);
             clientes.get(0).setDistancia(dist1);
             clientes.get(1).setDistancia(dist2);
             clientes.get(2).setDistancia(dist3);
 
-            Collections.sort(clientes);
+            List<Cliente> aux = clientes;
 
-            clienteAdapter = new ClienteAdapter(clientes);
+            Collections.sort(aux);
+
+            Cliente c = aux.get(0);
+            Cliente c1 = aux.get(1);
+            Cliente c2 = aux.get(2);
+            float x = aux.get(0).getDistancia();
+            float y = aux.get(1).getDistancia();
+            float z = aux.get(2).getDistancia();
+
+
+            clienteAdapter = new ClienteAdapter(aux);
+
+            //clienteAdapter.notifyDataSetChanged();
+
             listado_clientesRecycler.setAdapter(clienteAdapter);
         }
     }
