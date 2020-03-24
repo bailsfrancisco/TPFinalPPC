@@ -23,6 +23,7 @@
     <string name="detalle">Detalle</string>
     <string name="distancia">Distancia</string>
     <string name="valor_distancia">WebService distancia</string>
+    <string name="calculando_distancia">Calculando distancia ...</string>
     <string name="domicilio">Domicilio</string>
     <string name="valor_domicilio">WebService domicilio</string>
     <string name="latitud">Latitud</string>
