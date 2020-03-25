@@ -2,6 +2,7 @@ package ar.edu.unnoba.tpfinalppc;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Base64;
@@ -21,6 +22,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
 
     private EditText etEmail;
     private EditText etPassword;
+    private EditText etPaswordCheck;
 
     Button btnRegistrarme, btnIngresar;
 
@@ -37,6 +39,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
 
         etEmail = (EditText) findViewById(R.id.editTextRegEmail);
         etPassword = (EditText) findViewById(R.id.editTextRegPassword);
+        etPaswordCheck = (EditText) findViewById(R.id.editTextRegPasswordCheck);
         btnRegistrarme = (Button) findViewById(R.id.buttonRegRegistrarme);
         btnIngresar = (Button) findViewById(R.id.buttonRegIngresar);
 
@@ -61,25 +64,30 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
     private void register() {
         String email = etEmail.getText().toString();
         String pass = etPassword.getText().toString();
-        try {
-            //con el email encripto y desencripto (es la password para realizar dichas acciones)
-            pass_encriptada = encriptar(pass, email);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        String pass_check = etPaswordCheck.getText().toString();
+        if (pass.equals(pass_check)) {
+            try {
+                //con el email encripto y desencripto (es la password para realizar dichas acciones)
+                pass_encriptada = encriptar(pass, email);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        if (email.isEmpty() || pass.isEmpty()) {
-            displayToast("Campos vacios.");
-        }else if(db.getUserByEmail(email)){
-            displayToast("El usuario ya se encuentra registrado.");
-        }else {
-            db.addUser(email, pass_encriptada);
-            displayToast("Usuario registrado.");
-            finish();
+            if (email.isEmpty() || pass.isEmpty()) {
+                displayToast("Campos vacios.");
+            } else if (db.getUserByEmail(email)) {
+                displayToast("El usuario ya se encuentra registrado.");
+            } else {
+                db.addUser(email, pass_encriptada);
+                displayToast("Usuario registrado.");
+                finish();
+            }
+        } else {
+            displayToast("Las contraseñas no coinciden !!!");
         }
     }
 
-    private String encriptar(String password_a_encriptar,String password_encrip) throws Exception{
+    private String encriptar(String password_a_encriptar, String password_encrip) throws Exception {
         SecretKeySpec secretKeySpec = generateKey(password_encrip);
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
@@ -88,7 +96,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         return passEncriptadaString;
     }
 
-    private SecretKeySpec generateKey(String password_encrip) throws  Exception{
+    private SecretKeySpec generateKey(String password_encrip) throws Exception {
         MessageDigest sha = MessageDigest.getInstance("SHA-256");
         byte[] key = password_encrip.getBytes("UTF-8");
         key = sha.digest(key);

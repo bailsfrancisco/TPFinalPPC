@@ -12,12 +12,16 @@
     <string name="titulo">Gestión de deudores</string>
     <string name="email">Ingrese su e-mail</string>
     <string name="contraseña">Ingrese su contraseña</string>
+    <string name="reingrese_contraseña">Reingrese su contraseña</string>
+    <string name="etemail">E-mail</string>
+    <string name="etpassword">Contraseña</string>
+    <string name="etpasswordCheck">Vuelva a ingresar la contraseña</string>
     <string name="ingresar">Ingresar</string>
     <string name="no_tiene_cuenta">¿No tienes cuenta?</string>
     <string name="registrarse">Registrate</string>
     <string name="registrarme">Registrarme</string>
     <string name="esta_registrado">¿Ya se encuentra registrado?</string>
-    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="crear_cuenta">Formulario de registro de usuarios</string>
 
     <string name="descripcion">Descripción</string>
     <string name="detalle">Detalle</string>

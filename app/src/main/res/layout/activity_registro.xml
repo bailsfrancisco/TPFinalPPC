@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#545454">
+    android:background="@drawable/background_abstract">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,10 +40,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/crear_cuenta"
                 android:paddingTop="10dp"
-                android:textAllCaps="true"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:textSize="15sp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <TextView
@@ -52,7 +51,9 @@
             android:layout_height="wrap_content"
             android:text="@string/email"
             android:textColor="#fff"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textSize="15dp"/>
 
         <EditText
             android:id="@+id/editTextRegEmail"
@@ -61,7 +62,10 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:textColor="#fff"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:hint="@string/etemail"
+            android:textSize="15dp"
+            android:gravity="center_horizontal"/>
 
         <TextView
             android:id="@+id/textViewRegPassword"
@@ -69,7 +73,9 @@
             android:layout_height="wrap_content"
             android:text="@string/contraseña"
             android:textColor="#fff"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textSize="15dp"/>
 
         <EditText
             android:id="@+id/editTextRegPassword"
@@ -78,13 +84,39 @@
             android:ems="10"
             android:inputType="textPassword"
             android:textColor="#fff"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:hint="@string/etpassword"
+            android:textSize="15dp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/textViewRegPasswordCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reingrese_contraseña"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/editTextRegPasswordCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:hint="@string/etpasswordCheck"
+            android:textSize="15dp"
+            android:gravity="center_horizontal"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
 
             <Button
                 android:id="@+id/buttonRegRegistrarme"
@@ -94,14 +126,15 @@
                 android:onClick="registrarUsuario"
                 android:text="@string/registrarme"
                 android:textAllCaps="false"
-                android:textColor="#fff"/>
+                android:textColor="#fff"
+                android:textSize="15dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <TextView
@@ -121,7 +154,8 @@
                 android:background="@drawable/shape_button_contorno"
                 android:text="@string/ingresar"
                 android:textAllCaps="false"
-                android:textColor="#fff"/>
+                android:textColor="#fff"
+                android:textSize="15dp"/>
         </LinearLayout>
 
     </LinearLayout>
