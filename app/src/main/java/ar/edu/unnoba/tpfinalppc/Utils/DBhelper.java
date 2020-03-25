@@ -91,4 +91,22 @@ public class DBhelper extends SQLiteOpenHelper {
 
         return false;
     }
+
+    public String getPasswordHash(String email){
+        String x;
+        String selectQuery = "select password from  " + USER_TABLE + " where " +
+                COLUMN_EMAIL + " = " + "'"+email+"'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // Move to first row
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            x = cursor.getString(0);
+            return cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return "";
+    }
 }

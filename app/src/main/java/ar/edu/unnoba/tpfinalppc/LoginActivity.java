@@ -3,10 +3,17 @@ package ar.edu.unnoba.tpfinalppc;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.security.MessageDigest;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 import ar.edu.unnoba.tpfinalppc.Utils.DBhelper;
 import ar.edu.unnoba.tpfinalppc.Utils.Session;
@@ -21,6 +28,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private DBhelper db;
     private Session session;
+
+    private String passwordHash;
+    String pass_desencriptada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +71,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void login() {
         String email = etEmail.getText().toString();
         String pass = etPassword.getText().toString();
-        if (db.getUser(email, pass)) {
+        try{
+            passwordHash = db.getPasswordHash(email);
+            pass_desencriptada = desencriptar(passwordHash, email);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        //devuelve true si email y pass coinciden
+        if (pass.equals(pass_desencriptada)) {
             session.setLoggedin(true);
             session.guardarDatos(email,pass);
             Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
@@ -70,5 +87,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             Toast.makeText(getApplicationContext(), "Email y/o contraseña incorrectos.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private String desencriptar(String password_a_desencriptar, String password_desencrip) throws Exception{
+        SecretKeySpec secretKeySpec = generateKey(password_desencrip);
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+        byte[] passDesencriptada = Base64.decode(password_a_desencriptar, Base64.DEFAULT);
+        byte[] passDesencriptadaEnByte = cipher.doFinal(passDesencriptada);
+        String passDesencriptadaString = new String(passDesencriptadaEnByte);
+        return passDesencriptadaString;
+    }
+
+    private SecretKeySpec generateKey(String password) throws  Exception{
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+        byte[] key =password.getBytes("UTF-8");
+        key = sha.digest(key);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
+        return secretKeySpec;
     }
 }
