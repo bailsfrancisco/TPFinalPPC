@@ -237,18 +237,16 @@ public class MainActivity extends AppCompatActivity
             Log.e(TAG, "ERROR DE CONEXION");
         }
         if (clientes != null && !clientes.isEmpty()) {
-            clientes.get(0).setImage(R.drawable.cliente_la_anonima);
-            clientes.get(1).setImage(R.drawable.cliente_garbarino);
-            clientes.get(2).setImage(R.drawable.cliente_sistema_riego);
-
-
+            for(Cliente c: clientes) {
+                c.setImage(R.drawable.cliente);
+            }
 
             Cliente cl = clientes.get(0);
             Cliente cl1 = clientes.get(1);
             Cliente cl2 = clientes.get(2);
-            clientes.get(0).setDistancia(dist1);
-            clientes.get(1).setDistancia(dist2);
-            clientes.get(2).setDistancia(dist3);
+            cl.setDistancia(dist1);
+            cl1.setDistancia(dist2);
+            cl2.setDistancia(dist3);
 
             List<Cliente> aux = clientes;
 
@@ -257,16 +255,14 @@ public class MainActivity extends AppCompatActivity
             Cliente c = aux.get(0);
             Cliente c1 = aux.get(1);
             Cliente c2 = aux.get(2);
-            float x = aux.get(0).getDistancia();
-            float y = aux.get(1).getDistancia();
-            float z = aux.get(2).getDistancia();
+            float x = c.getDistancia();
+            float y = c1.getDistancia();
+            float z = c2.getDistancia();
 
 
             listado_clientesRecycler.setLayoutManager(new LinearLayoutManager(this));
 
             clienteAdapter = new ClienteAdapter(aux);
-
-            //clienteAdapter.notifyDataSetChanged();
 
             listado_clientesRecycler.setAdapter(clienteAdapter);
         }

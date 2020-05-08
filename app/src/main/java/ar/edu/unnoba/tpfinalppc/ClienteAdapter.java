@@ -36,7 +36,7 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteV
             super(view);
 
             cardView = view.findViewById(R.id.card_view);
-            img_view = view.findViewById(R.id.imageAnonima);
+            img_view = view.findViewById(R.id.imageCliente);
             descripcion = view.findViewById(R.id.descripcionWebService);
             detalle = view.findViewById(R.id.detalleWebService);
             cardView.setOnClickListener(new View.OnClickListener() {

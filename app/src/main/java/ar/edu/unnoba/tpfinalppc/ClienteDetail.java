@@ -44,7 +44,7 @@ public class ClienteDetail extends AppCompatActivity  implements OnMapReadyCallb
     private static final String TAG = ClienteDetail.class.getSimpleName();
 
     TextView descripcion,detalle,distancia,domicilio, telefono,valor, tipo;
-    ImageView img_anonima;
+    ImageView img_cliente;
     Cliente cliente;
 
     private GoogleMap googleMap;
@@ -70,14 +70,14 @@ public class ClienteDetail extends AppCompatActivity  implements OnMapReadyCallb
         telefono = findViewById(R.id.telefonoWebService);
         valor = findViewById(R.id.valorWebService);
         tipo = findViewById(R.id.tipoWebService);
-        img_anonima = findViewById(R.id.imageAnonima);
+        img_cliente = findViewById(R.id.imageCliente);
 
         Gson gson = new Gson();
         cliente = gson.fromJson(getIntent().getStringExtra("myjson"), Cliente.class);
 
         location_cliente = new LatLng(cliente.getLatitud(), cliente.getLongitud());
 
-        img_anonima.setImageResource(cliente.getImage());
+        img_cliente.setImageResource(cliente.getImage());
         descripcion.setText(cliente.getDescripcion());
         detalle.setText(cliente.getDetalle());
 

@@ -12,22 +12,22 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageAnonima"
+            android:id="@+id/imageCliente"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/cliente_la_anonima" />
+            app:srcCompat="@drawable/cliente" />
 
         <TextView
             android:id="@+id/descripcionWebService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageAnonima"
+            android:layout_below="@+id/imageCliente"
             android:text="@string/descripcion"
             android:textAlignment="center"
-            android:textColor="@color/colorAccent"
+            android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
         <TextView

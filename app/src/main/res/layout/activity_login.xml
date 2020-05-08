@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center_horizontal"
-            android:hint="@string/etemail"
+            android:hint="@string/etpassword"
             android:inputType="textPassword"
             android:textColor="#fff"
             android:textSize="15dp"
