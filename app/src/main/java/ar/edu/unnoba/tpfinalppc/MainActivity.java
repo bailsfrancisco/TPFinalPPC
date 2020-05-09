@@ -12,7 +12,6 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 
-import com.android.volley.ClientError;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
 
@@ -46,8 +45,6 @@ import org.json.JSONArray;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -66,12 +63,6 @@ public class MainActivity extends AppCompatActivity
     RecyclerView listado_clientesRecycler;
     ClienteAdapter clienteAdapter;
     ProgressBar progressBar;
-
-    private LatLng location_usuario;
-
-    private  float dist1;
-    private float dist2;
-    private  float dist3;
 
     boolean local = false;
     public static final String TAG = MainActivity.class.getSimpleName();
@@ -242,11 +233,12 @@ public class MainActivity extends AppCompatActivity
                 c.setImage(R.drawable.cliente);
                 auxiliar.add(c);
             }
-            lista_ordenada = ordenar_lista(auxiliar, location_usuario);
+
+            //lista_ordenada = ordenar_lista(auxiliar, location_usuario);
 
             listado_clientesRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-            clienteAdapter = new ClienteAdapter(lista_ordenada);
+            //clienteAdapter = new ClienteAdapter(lista_ordenada);
 
             listado_clientesRecycler.setAdapter(clienteAdapter);
         }
@@ -289,6 +281,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setLocation(Location loc) {
+        LatLng location_usuario = null;
         if (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0) {
             try {
                 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
