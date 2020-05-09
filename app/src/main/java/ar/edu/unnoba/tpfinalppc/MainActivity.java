@@ -62,10 +62,12 @@ public class MainActivity extends AppCompatActivity
     private static final String URL = "http://ppc.edit.com.ar:8080/resources/datos/deudas/-34.581727/-60.931513";
 
     Gson gson;
-    List<Cliente> clientes;
+    List<Cliente> clientes = new ArrayList<>();
     RecyclerView listado_clientesRecycler;
     ClienteAdapter clienteAdapter;
     ProgressBar progressBar;
+
+    private LatLng location_usuario;
 
     private  float dist1;
     private float dist2;
@@ -104,13 +106,13 @@ public class MainActivity extends AppCompatActivity
         requestQueue = Volley.newRequestQueue(this);
         gson = new Gson();
 
-        jsonParse();
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         } else {
             locationStart();
         }
+
+        jsonParse();
 
     }
 
@@ -205,9 +207,7 @@ public class MainActivity extends AppCompatActivity
 
 
     private void jsonParse () {
-
         requestQueue = Volley.newRequestQueue(this);
-
         JsonArrayRequest json_request = new JsonArrayRequest(Request.Method.GET,URL,null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -226,76 +226,52 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-
         requestQueue.add(json_request);
     }
 
-    private void llenar_lista(JSONArray source){
-        if (source!=null) {
+    private void llenar_lista(JSONArray source) {
+        List<Cliente> lista_ordenada;
+        List<Cliente> auxiliar = new ArrayList<>();
+        if (source != null) {
             clientes = Arrays.asList(gson.fromJson(source.toString(), Cliente[].class));
-        }else {
+        } else {
             Log.e(TAG, "ERROR DE CONEXION");
         }
         if (clientes != null && !clientes.isEmpty()) {
-            for(Cliente c: clientes) {
+            for (Cliente c : clientes) {
                 c.setImage(R.drawable.cliente);
+                auxiliar.add(c);
             }
-
-            Cliente cl = clientes.get(0);
-            Cliente cl1 = clientes.get(1);
-            Cliente cl2 = clientes.get(2);
-            cl.setDistancia(dist1);
-            cl1.setDistancia(dist2);
-            cl2.setDistancia(dist3);
-
-            List<Cliente> aux = clientes;
-
-            Collections.sort(aux);
-
-            Cliente c = aux.get(0);
-            Cliente c1 = aux.get(1);
-            Cliente c2 = aux.get(2);
-            float x = c.getDistancia();
-            float y = c1.getDistancia();
-            float z = c2.getDistancia();
-
+            lista_ordenada = ordenar_lista(auxiliar, location_usuario);
 
             listado_clientesRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-            clienteAdapter = new ClienteAdapter(aux);
+            clienteAdapter = new ClienteAdapter(lista_ordenada);
 
             listado_clientesRecycler.setAdapter(clienteAdapter);
         }
     }
 
-    public void setLocation(Location loc) {
-        LatLng location_usuario = null;
-        LatLng location_cliente1 = null;
-        LatLng location_cliente2 = null;
-        LatLng location_cliente3 = null;
-        if (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0) {
-            try {
-                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-                List<Address> list = geocoder.getFromLocation(
-                        loc.getLatitude(), loc.getLongitude(), 1);
-                if (!list.isEmpty()) {
-                    Double lat = loc.getLatitude();
-                    Double lon = loc.getLongitude();
-                    location_usuario = new LatLng(lat, lon);
-
-                    location_cliente1 = new LatLng(-34.580522,-60.930744);
-                    location_cliente2 = new LatLng(-34.575407,-60.962179);
-                    location_cliente3 = new LatLng(-34.556917,-60.919601);
-
-                    dist1 = getDistance(location_usuario, location_cliente1);
-                    dist2 = getDistance(location_usuario, location_cliente2);
-                    dist3 = getDistance(location_usuario, location_cliente3);
-
+    public List<Cliente> ordenar_lista(List<Cliente> cli, LatLng loc_user){
+        LatLng location_c = null;
+        float dist;
+        float dist_min;
+        List<Cliente> l_ordenada = new ArrayList<>();
+        Cliente c_min = new Cliente();
+        while (!cli.isEmpty()) {
+            dist_min = 999999999;
+            for (Cliente c : cli) {
+                location_c = new LatLng(c.getLatitud(), c.getLongitud());
+                dist = getDistance(loc_user, location_c);
+                if (dist < dist_min) {
+                    dist_min = dist;
+                    c_min = c;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+            l_ordenada.add(c_min);
+            cli.remove(c_min);
         }
+        return l_ordenada;
     }
 
     private float getDistance(LatLng usuario, LatLng cliente){
@@ -310,6 +286,23 @@ public class MainActivity extends AppCompatActivity
         float distance=l1.distanceTo(l2);
 
         return distance;
+    }
+
+    public void setLocation(Location loc) {
+        if (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0) {
+            try {
+                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                List<Address> list = geocoder.getFromLocation(
+                        loc.getLatitude(), loc.getLongitude(), 1);
+                if (!list.isEmpty()) {
+                    Double lat = loc.getLatitude();
+                    Double lon = loc.getLongitude();
+                    location_usuario = new LatLng(lat, lon);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public class Localizacion implements LocationListener {
