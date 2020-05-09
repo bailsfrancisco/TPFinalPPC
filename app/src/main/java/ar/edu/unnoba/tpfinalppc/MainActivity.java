@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity
     ClienteAdapter clienteAdapter;
     ProgressBar progressBar;
 
+    LatLng location_usuario;
+
     boolean local = false;
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -102,9 +104,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             locationStart();
         }
-
-        jsonParse();
-
     }
 
     private void locationStart() {
@@ -223,6 +222,7 @@ public class MainActivity extends AppCompatActivity
     private void llenar_lista(JSONArray source) {
         List<Cliente> lista_ordenada;
         List<Cliente> auxiliar = new ArrayList<>();
+        LatLng l_user;
         if (source != null) {
             clientes = Arrays.asList(gson.fromJson(source.toString(), Cliente[].class));
         } else {
@@ -234,11 +234,13 @@ public class MainActivity extends AppCompatActivity
                 auxiliar.add(c);
             }
 
-            //lista_ordenada = ordenar_lista(auxiliar, location_usuario);
+            l_user = getLocation_usuario();
+
+            lista_ordenada = ordenar_lista(auxiliar, l_user);
 
             listado_clientesRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-            //clienteAdapter = new ClienteAdapter(lista_ordenada);
+            clienteAdapter = new ClienteAdapter(lista_ordenada);
 
             listado_clientesRecycler.setAdapter(clienteAdapter);
         }
@@ -281,7 +283,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setLocation(Location loc) {
-        LatLng location_usuario = null;
+        LatLng l;
         if (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0) {
             try {
                 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -290,12 +292,22 @@ public class MainActivity extends AppCompatActivity
                 if (!list.isEmpty()) {
                     Double lat = loc.getLatitude();
                     Double lon = loc.getLongitude();
-                    location_usuario = new LatLng(lat, lon);
+                    l = new LatLng(lat, lon);
+                    setLocation_usuario(l);
+                    jsonParse();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public LatLng getLocation_usuario() {
+        return location_usuario;
+    }
+
+    public void setLocation_usuario(LatLng location_usuario) {
+        this.location_usuario = location_usuario;
     }
 
     public class Localizacion implements LocationListener {
@@ -313,8 +325,6 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onLocationChanged(Location loc) {
             // Este metodo se ejecuta cada vez que el GPS recibe nuevas coordenadas debido a la deteccion de un cambio de ubicacion del dispositivo
-            loc.getLatitude();
-            loc.getLongitude();
             this.mainActivity.setLocation(loc);
         }
 
