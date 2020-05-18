@@ -192,8 +192,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="127dp"
-            android:layout_marginTop="526dp">
+            android:layout_height="130dp"
+            android:layout_marginTop="605dp">
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
