@@ -70,22 +70,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void login() {
         String email = etEmail.getText().toString();
-        String pass = etPassword.getText().toString();
-        try{
-            passwordHash = db.getPasswordHash(email);
-            pass_desencriptada = desencriptar(passwordHash, email);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        //devuelve true si email y pass coinciden
-        if (pass.equals(pass_desencriptada)) {
-            session.setLoggedin(true);
-            session.guardarDatos(email,pass);
-            Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(i2);
-            finish();
-        } else {
-            Toast.makeText(getApplicationContext(), "Email y/o contraseña incorrectos.", Toast.LENGTH_SHORT).show();
+        if (!email.matches("[a-zA-Z0-9._-]+@[az]+.[az]+")) {
+            etEmail.setError("Ingrese un email valido");
+        }else {
+            String pass = etPassword.getText().toString();
+            try {
+                passwordHash = db.getPasswordHash(email);
+                pass_desencriptada = desencriptar(passwordHash, email);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //devuelve true si email y pass coinciden
+            if (pass.equals(pass_desencriptada)) {
+                session.setLoggedin(true);
+                session.guardarDatos(email, pass);
+                Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(i2);
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "Email y/o contraseña incorrectos.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

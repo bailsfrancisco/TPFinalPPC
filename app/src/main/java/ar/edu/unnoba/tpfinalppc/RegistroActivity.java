@@ -63,27 +63,31 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
 
     private void register() {
         String email = etEmail.getText().toString();
-        String pass = etPassword.getText().toString();
-        String pass_check = etPaswordCheck.getText().toString();
-        if (pass.equals(pass_check)) {
-            try {
-                //con el email encripto y desencripto (es la password para realizar dichas acciones)
-                pass_encriptada = encriptar(pass, email);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (!email.matches("[a-zA-Z0-9._-]+@[az]+.[az]+")) {
+            etEmail.setError("Ingrese un email valido");
+        }else {
+            String pass = etPassword.getText().toString();
+            String pass_check = etPaswordCheck.getText().toString();
+            if (pass.equals(pass_check)) {
+                try {
+                    //con el email encripto y desencripto (es la password para realizar dichas acciones)
+                    pass_encriptada = encriptar(pass, email);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-            if (email.isEmpty() || pass.isEmpty()) {
-                displayToast("Campos vacios.");
-            } else if (db.getUserByEmail(email)) {
-                displayToast("El usuario ya se encuentra registrado.");
+                if (email.isEmpty() || pass.isEmpty()) {
+                    displayToast("Campos vacios.");
+                } else if (db.getUserByEmail(email)) {
+                    displayToast("El usuario ya se encuentra registrado.");
+                } else {
+                    db.addUser(email, pass_encriptada);
+                    displayToast("Usuario registrado.");
+                    finish();
+                }
             } else {
-                db.addUser(email, pass_encriptada);
-                displayToast("Usuario registrado.");
-                finish();
+                displayToast("Las contraseñas no coinciden !!!");
             }
-        } else {
-            displayToast("Las contraseñas no coinciden !!!");
         }
     }
 
